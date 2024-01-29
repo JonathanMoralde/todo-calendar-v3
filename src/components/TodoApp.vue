@@ -1,8 +1,16 @@
 <script>
-// import { ref } from "vue";
-
 export default {
   name: "TodoApp",
+  props: ["date"],
+  computed: {
+    formatDate() {
+      return this.date.toLocaleDateString("en-us", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    },
+  },
 };
 </script>
 
@@ -11,7 +19,7 @@ export default {
     <!-- overflow-hidden -->
     <!-- Selected Date -->
     <h3 class="mb-4 text-center font-medium text-xl tracking-wide">
-      January 28, 2023
+      {{ formatDate }}
     </h3>
 
     <!-- TASK INPUT -->
@@ -23,7 +31,10 @@ export default {
           type="text"
         />
         <button class="text-indigo-600 font-medium px-2 w-1/4 hover:opacity-80">
-          New Task
+          <span class="me-1">
+            <i class="fas fa-plus"></i>
+          </span>
+          <span class="text-sm"> New Task </span>
         </button>
       </form>
     </div>

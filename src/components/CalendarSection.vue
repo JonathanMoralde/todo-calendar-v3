@@ -1,6 +1,7 @@
 <script>
 export default {
   name: "CalendarSection",
+  props: ["year", "month", "updateDisplay", "setDate"],
   data() {
     return {
       weekdays: [
@@ -12,8 +13,6 @@ export default {
         "Friday",
         "Saturday",
       ],
-      month: new Date().getMonth(),
-      year: new Date().getFullYear(),
       today: new Date().getDate(),
       monthToday: new Date().getMonth(),
       yearToday: new Date().getFullYear(),
@@ -63,14 +62,18 @@ export default {
 </script>
 
 <template>
-  <div class="w-full mt-10 text-center">
+  <div class="w-full text-center">
     <!-- data selector -->
     <div class="mb-2 flex items-center justify-between w-1/2 mx-auto">
       <!-- back year -->
-      <h3>--</h3>
+      <button @click="updateDisplay(false, true)">
+        <i class="fas fa-angle-double-left"></i>
+      </button>
 
       <!-- back month -->
-      <h3>-</h3>
+      <button @click="updateDisplay(false, false)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
       <h3>
         {{
           new Date(this.year, this.month, 1).toLocaleDateString("en-us", {
@@ -81,10 +84,14 @@ export default {
       </h3>
 
       <!-- forward month -->
-      <h3>+</h3>
+      <button @click="updateDisplay(true, false)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
 
       <!-- forward year -->
-      <h3>++</h3>
+      <button @click="updateDisplay(true, true)">
+        <i class="fas fa-angle-double-right"></i>
+      </button>
     </div>
 
     <!-- day names -->
@@ -105,6 +112,7 @@ export default {
         class="w-full h-16 bg-white rounded-lg hover:shadow-lg transition-all hover:cursor-pointer pt-4 pb-2 flex flex-col justify-between items-center"
         v-for="(day, index) in generatePrefixDays(blankDays)"
         :key="index"
+        @click="setDate(day, false, true, false)"
       >
         <h3 class="text-xs text-gray-400">
           {{ new Date(this.year, this.month, day).getDate() }}
@@ -118,6 +126,7 @@ export default {
           (_, index) => index + 1
         )"
         :key="index"
+        @click="setDate(day, true, false, false)"
       >
         <h3 class="text-xs">{{ day }}</h3>
       </div>
@@ -130,6 +139,7 @@ export default {
           (_, index) => index + 1
         )"
         :key="index"
+        @click="setDate(day, false, false, true)"
       >
         <h3 class="text-xs text-gray-400">
           {{ new Date(this.year, this.month + 1, day).getDate() }}
