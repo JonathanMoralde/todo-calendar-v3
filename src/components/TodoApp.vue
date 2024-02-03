@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <Section class="w-full p-4 rounded-lg bg-white h-[28.8125rem]">
+  <section class="w-full p-4 rounded-lg bg-white h-[28.8125rem]">
     <!-- overflow-hidden -->
     <!-- Selected Date -->
     <h3 class="mb-4 text-center font-medium text-xl tracking-wide">
@@ -43,7 +43,7 @@ export default {
     <div id="todoList" class="flex flex-col h-3/4">
       <!-- overflow-y-scroll -->
     </div>
-  </Section>
+  </section>
 </template>
 
 <style scoped></style>

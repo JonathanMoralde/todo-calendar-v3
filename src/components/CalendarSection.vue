@@ -127,6 +127,12 @@ export default {
         )"
         :key="index"
         @click="setDate(day, true, false, false)"
+        :class="{
+          'border-2 border-indigo-300':
+            today === day &&
+            this.month === monthToday &&
+            this.year === yearToday,
+        }"
       >
         <h3 class="text-xs">{{ day }}</h3>
       </div>
