@@ -20,19 +20,17 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  // Check if the route requires authentication
-  if (to.meta.requiresAuth) {
-    // Check the user's session
-    const isAuthenticated = await checkSession();
+  const isAuthenticated = await checkSession();
 
-    // Redirect to login if not authenticated
-    if (!isAuthenticated) {
-      next("/login");
-    } else {
-      next();
-    }
+  // If the user is already authenticated and is trying to access the login page,
+  // redirect them to the home page or another authenticated route
+  if (isAuthenticated && to.path === "/login") {
+    next("/");
+  } else if (to.meta.requiresAuth && !isAuthenticated) {
+    // Redirect to login if the route requires authentication and the user is not authenticated
+    next("/login");
   } else {
-    // Allow access to routes that do not require authentication
+    // Allow access to other routes
     next();
   }
 });
