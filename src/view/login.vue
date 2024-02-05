@@ -2,13 +2,15 @@
   <main class="h-screen flex justify-center items-center">
     <!-- signin signup -->
     <div
-      class="bg-white bg-opacity-15 shadow rounded p-4 w-3/4 md:w-1/2 lg:w-1/4 z-10 flex flex-col items-center justify-center h-[32rem] transition-all"
+      class="bg-white bg-opacity-20 shadow rounded p-4 w-3/4 md:w-1/2 lg:w-1/4 z-10 flex flex-col items-center justify-center h-[32rem] transition-all"
       :class="{
-        'h-[40rem]': this.isRegister === true && this.isLogin === false,
+        'h-[37rem]': this.isRegister === true && this.isLogin === false,
       }"
     >
       <!-- Logo -->
-      <div class="w-40 h-40 shadow rounded-full mb-4">
+      <div
+        class="w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 shadow rounded-full mb-4"
+      >
         <img
           class="w-full h-full"
           src="../assets/TC.png"
@@ -17,20 +19,20 @@
       </div>
 
       <!-- Welcome -->
-      <h1 class="mb-10 tracking-wide font-semibold text-lg">
-        Welcome to To-do Calendar V3!
+      <h1 class="mb-6 tracking-wide font-semibold text-center text-lg">
+        Welcome to To-do Calendar!
       </h1>
 
       <!-- Sign in -->
 
-      <div class="mb-10 flex">
+      <div class="mb-6 w-full flex md:px-10">
         <transition name="slide-fade">
           <!-- Sign in Form -->
-          <form v-if="isLogin">
+          <form v-if="isLogin" class="w-full">
             <!-- Email -->
             <div class="w-full mb-4">
               <input
-                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0"
+                class="bg-violet-500 placeholder-black border-none ring-0 focus:ring-0 h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0 text-sm"
                 type="email"
                 name="email"
                 id="email"
@@ -42,7 +44,7 @@
             <!-- Pass -->
             <div class="w-full mb-4">
               <input
-                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0"
+                class="bg-violet-500 placeholder-black border-none ring-0 focus:ring-0 h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0 text-sm"
                 type="password"
                 name="password"
                 id="password"
@@ -63,32 +65,34 @@
         <transition name="slide-fade">
           <!--! sign up form -->
           <form v-if="isRegister">
-            <!-- First name -->
-            <div class="w-full mb-4">
-              <input
-                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0"
-                type="text"
-                name="fname"
-                id="fname"
-                placeholder="First Name"
-                v-model="fname"
-              />
-            </div>
-            <!-- lname -->
-            <div class="w-full mb-4">
-              <input
-                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0"
-                type="text"
-                name="lname"
-                id="lname"
-                placeholder="Last Name"
-                v-model="lname"
-              />
+            <div class="flex mb-4 gap-4">
+              <!-- First name -->
+              <div class="w-full">
+                <input
+                  class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0 text-sm border-none ring-0 focus:ring-0"
+                  type="text"
+                  name="fname"
+                  id="fname"
+                  placeholder="First Name"
+                  v-model="fname"
+                />
+              </div>
+              <!-- lname -->
+              <div class="w-full">
+                <input
+                  class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0 text-sm border-none ring-0 focus:ring-0"
+                  type="text"
+                  name="lname"
+                  id="lname"
+                  placeholder="Last Name"
+                  v-model="lname"
+                />
+              </div>
             </div>
             <!-- Email -->
             <div class="w-full mb-4">
               <input
-                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0"
+                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0 text-sm border-none ring-0 focus:ring-0"
                 type="email"
                 name="email"
                 id="email"
@@ -100,7 +104,7 @@
             <!-- Pass -->
             <div class="w-full mb-4">
               <input
-                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0"
+                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0 text-sm border-none ring-0 focus:ring-0"
                 type="password"
                 name="password"
                 id="password"
@@ -111,7 +115,7 @@
             <!-- Confirm Pass -->
             <div class="w-full mb-4">
               <input
-                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0"
+                class="bg-violet-500 placeholder-black h-4 w-full p-4 rounded bg-opacity-10 shadow-inner shadow-violet-500/35 tracking-wide focus:outline-0 text-sm border-none ring-0 focus:ring-0"
                 type="password"
                 name="cpassword"
                 id="cpassword"
@@ -124,14 +128,14 @@
               class="bg-violet-500 bg-opacity-40 w-full py-2 tracking-wide rounded shadow-inner shadow-violet-500/35 hover:shadow-violet-500 transition-all"
               @click.prevent="authenticate('register')"
             >
-              Sign In
+              Sign Up
             </button>
           </form>
         </transition>
       </div>
 
       <transition name="fade">
-        <p v-show="isLogin" class="tracking-wide">
+        <p v-show="isLogin" class="tracking-wide text-center">
           Don't have an account yet?
           <span
             @click="displayRegister"
@@ -141,7 +145,7 @@
         </p>
       </transition>
       <transition name="fade">
-        <p v-show="isRegister" class="tracking-wide">
+        <p v-show="isRegister" class="tracking-wide text-center">
           Already have an account?
           <span
             @click="displayLogin"
@@ -153,16 +157,16 @@
     </div>
     <!-- background blur -->
     <div
-      class="h-80 md:h-96 w-80 md:w-[30rem] bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] blur"
+      class="h-80 md:h-96 w-80 md:w-[30rem] bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] blur"
     ></div>
     <div
-      class="h-72 md:h-80 lg:h-96 w-72 md:w-80 lg:w-96 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full absolute top-1/4 left-1/4 translate-x-[-25%] translate-y-[-25%] blur"
+      class="h-72 md:h-80 lg:h-96 w-72 md:w-80 lg:w-96 bg-gradient-to-r from-sky-400 to-indigo-400 rounded-full absolute top-1/4 left-1/4 translate-x-[-25%] translate-y-[-25%] blur"
     ></div>
     <div
-      class="h-64 md:h-72 lg:h-80 w-64 md:w-72 lg:w-80 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full absolute top-full left-3/4 translate-x-[-100%] translate-y-[-75%] blur"
+      class="h-64 md:h-72 lg:h-80 w-64 md:w-72 lg:w-80 bg-gradient-to-r from-violet-400 to-fuchsia-400 rounded-full absolute top-full left-3/4 translate-x-[-100%] translate-y-[-75%] blur"
     ></div>
     <div
-      class="h-[30rem] w-80 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full absolute top-[-10%] right-[-10%] translate-x-0 translate-y-0 blur hidden lg:block"
+      class="h-[30rem] w-80 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full absolute top-[-10%] right-[-10%] translate-x-0 translate-y-0 blur hidden lg:block"
     ></div>
     <div
       class="h-96 w-96 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full absolute bottom-[-30%] left-[0%] translate-x-0%] translate-y-[30%] blur hidden lg:block"
@@ -217,7 +221,7 @@ export default {
         this.reg_cpass = "";
       }, 300);
     },
-    authenticate(type) {
+    async authenticate(type) {
       if (type === "login") {
         // sign in
         console.log(this.login_email, this.login_pass);
@@ -231,7 +235,7 @@ export default {
           // console.log("form data", loginData);
 
           try {
-            axios
+            await axios
               .post(
                 "http://localhost:5000/user/signin",
                 // loginData
@@ -253,7 +257,8 @@ export default {
                 }
               })
               .catch((err) => {
-                console.log(err.response);
+                console.log(err.response.data);
+                alert(err.response.data.error);
               });
 
             // console.log(response.data, "login data");
@@ -286,22 +291,42 @@ export default {
           if (this.reg_pass !== this.reg_cpass) {
             alert("password does not match");
           } else {
-            let regData = new FormData();
-            regData.append("fName", this.fname);
-            regData.append("lName", this.lname);
-            regData.append("email", this.reg_email);
-            regData.append("pasword", this.reg_pass);
+            //let regData = new FormData();
+            //regData.append("fName", this.fname);
+            //regData.append("lName", this.lname);
+            //regData.append("email", this.reg_email);
+            //regData.append("pasword", this.reg_pass);
 
             try {
-              const response = axios.post(
-                "http://localhost:5000/user/signup",
-                regData
-              );
+              await axios
+                .post(
+                  "http://localhost:5000/user/signup",
+                  {
+                    fName: this.fname,
+                    lName: this.lname,
+                    email: this.reg_email,
+                    password: this.reg_pass,
+                  },
+                  {
+                    headers: { "Content-Type": "application/json" },
+                    withCredentials: true,
+                  }
+                )
+                .then((response) => {
+                  if (response.data.message === "Signed in successfully!") {
+                    // console.log(response.data);
+                  } else {
+                    console.log(response.data);
+                  }
 
-              console.log(response.data, "reg data");
-              if (response.data.message) {
-                this.displayLogin();
-              }
+                  // if (response.data.message === "Signed in successfully!")
+                  this.displayLogin();
+                  alert(response.data.message);
+                })
+                .catch((err) => {
+                  console.log(err.response.data);
+                  alert(err.response.data.error);
+                });
             } catch (error) {
               console.log(error);
             }

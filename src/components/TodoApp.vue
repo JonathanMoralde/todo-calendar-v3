@@ -1,4 +1,6 @@
 <script>
+import TodoItem from "./todoItem.vue";
+
 export default {
   name: "TodoApp",
   props: ["date"],
@@ -11,6 +13,7 @@ export default {
       });
     },
   },
+  components: { TodoItem },
 };
 </script>
 
@@ -42,6 +45,7 @@ export default {
     <!-- TASK LIST/DISPLAY -->
     <div id="todoList" class="flex flex-col h-3/4">
       <!-- overflow-y-scroll -->
+      <TodoItem />
     </div>
   </section>
 </template>
