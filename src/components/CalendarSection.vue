@@ -1,4 +1,9 @@
 <script>
+import ChevronLeftIcon from "vue-material-design-icons/ChevronLeft.vue";
+import ChevronDoubleLeftIcon from "vue-material-design-icons/ChevronDoubleLeft.vue";
+import ChevronDoubleRightIcon from "vue-material-design-icons/ChevronDoubleRight.vue";
+import ChevronRightIcon from "vue-material-design-icons/ChevronRight.vue";
+import "vue-material-design-icons/styles.css";
 export default {
   name: "CalendarSection",
   props: ["year", "month", "updateDisplay", "setDate"],
@@ -58,6 +63,12 @@ export default {
       return index;
     },
   },
+  components: {
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    ChevronDoubleLeftIcon,
+    ChevronDoubleRightIcon,
+  },
 };
 </script>
 
@@ -66,13 +77,15 @@ export default {
     <!-- data selector -->
     <div class="mb-2 flex items-center justify-between w-1/2 mx-auto">
       <!-- back year -->
-      <button @click="updateDisplay(false, true)">
-        <i class="fas fa-angle-double-left"></i>
+      <button @click="updateDisplay(false, true)" class="text-lg">
+        <!-- <i class="fas fa-angle-double-left"></i> -->
+        <ChevronDoubleLeftIcon />
       </button>
 
       <!-- back month -->
-      <button @click="updateDisplay(false, false)">
-        <i class="fas fa-chevron-left"></i>
+      <button @click="updateDisplay(false, false)" class="text-lg">
+        <!-- <i class="fas fa-chevron-left"></i> -->
+        <ChevronLeftIcon />
       </button>
       <h3>
         {{
@@ -84,13 +97,15 @@ export default {
       </h3>
 
       <!-- forward month -->
-      <button @click="updateDisplay(true, false)">
-        <i class="fas fa-chevron-right"></i>
+      <button @click="updateDisplay(true, false)" class="text-lg">
+        <!-- <i class="fas fa-chevron-right"></i> -->
+        <ChevronRightIcon />
       </button>
 
       <!-- forward year -->
-      <button @click="updateDisplay(true, true)">
-        <i class="fas fa-angle-double-right"></i>
+      <button @click="updateDisplay(true, true)" class="text-lg">
+        <!-- <i class="fas fa-angle-double-right"></i> -->
+        <ChevronDoubleRightIcon />
       </button>
     </div>
 

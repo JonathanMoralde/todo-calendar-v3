@@ -1,7 +1,7 @@
 <template>
   <header class="flex justify-between items-center px-4 md:px-20 py-2 lg:px-60">
     <div class="flex items-center">
-      <div class="w-10 h-10 lg:w-14 lg:h-14 me-2">
+      <div class="w-10 h-10 lg:w-14 lg:h-14 me-2 shadow rounded-full">
         <img
           class="w-full h-full"
           src="../assets/TC.png"
@@ -46,13 +46,6 @@
     </div>
   </header>
   <main class="py-16 min-h-screen px-4 md:px-20 lg:px-60">
-    <!-- <nav>
-    </nav> -->
-    <!-- <h1
-      class="text-center mb-4 text-2xl font-semibold tracking-wider uppercase"
-    >
-      To-do Calendar
-    </h1> -->
     <div class="flex flex-col md:flex-row-reverse gap-10 md:gap-4">
       <TodoApp :date="selectedDate" />
       <CalendarSection
