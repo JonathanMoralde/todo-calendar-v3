@@ -6,7 +6,7 @@ import "vue-material-design-icons/styles.css";
 
 export default {
   name: "TodoApp",
-  props: ["date"],
+  props: ["date", "allDatesData", "updateAllDates"],
   data() {
     return {
       taskInput: "",
@@ -136,8 +136,12 @@ export default {
         :id="item._id"
         :desc="item.description"
         :completed="item.completed"
+        :i="index"
         :tasks="data"
         :updateData="setData"
+        :allDates="this.allDatesData"
+        :dateStringValue="dateString"
+        :setAllDates="updateAllDates"
       />
     </div>
   </section>

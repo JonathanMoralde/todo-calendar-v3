@@ -4,9 +4,10 @@ import ChevronDoubleLeftIcon from "vue-material-design-icons/ChevronDoubleLeft.v
 import ChevronDoubleRightIcon from "vue-material-design-icons/ChevronDoubleRight.vue";
 import ChevronRightIcon from "vue-material-design-icons/ChevronRight.vue";
 import "vue-material-design-icons/styles.css";
+import StatusIndicator from "./statusIndicator.vue";
 export default {
   name: "CalendarSection",
-  props: ["year", "month", "updateDisplay", "setDate"],
+  props: ["year", "month", "updateDisplay", "setDate", "allDatesData"],
   data() {
     return {
       weekdays: [
@@ -22,6 +23,9 @@ export default {
       monthToday: new Date().getMonth(),
       yearToday: new Date().getFullYear(),
     };
+  },
+  mounted() {
+    console.log(this.allDatesData, "All Dates Data");
   },
   computed: {
     lastDayOfMonth() {
@@ -62,12 +66,22 @@ export default {
 
       return index;
     },
+    checkStatus(day, month, year) {
+      const dateString = `${year}-${month}-${day}`;
+      const allDates = this.allDatesData || [];
+
+      const dateIndex = allDates.map((d) => d.date).indexOf(dateString);
+
+      // return dateIndex !== null && dateIndex !== -1 ? true : false;
+      return dateIndex;
+    },
   },
   components: {
     ChevronLeftIcon,
     ChevronRightIcon,
     ChevronDoubleLeftIcon,
     ChevronDoubleRightIcon,
+    StatusIndicator,
   },
 };
 </script>
@@ -132,6 +146,14 @@ export default {
         <h3 class="text-xs text-gray-400">
           {{ new Date(this.year, this.month, day).getDate() }}
         </h3>
+        <StatusIndicator
+          v-if="
+            checkStatus(day, this.month, this.year) !== null &&
+            checkStatus(day, this.month, this.year) !== -1
+          "
+          :allDates="this.allDatesData"
+          :dateIndex="checkStatus(day, this.month, this.year)"
+        />
       </div>
       <!-- month days -->
       <div
@@ -150,6 +172,14 @@ export default {
         }"
       >
         <h3 class="text-xs">{{ day }}</h3>
+        <StatusIndicator
+          v-if="
+            checkStatus(day, this.month, this.year) !== null &&
+            checkStatus(day, this.month, this.year) !== -1
+          "
+          :allDates="this.allDatesData"
+          :dateIndex="checkStatus(day, this.month, this.year)"
+        />
       </div>
 
       <!-- next month days -->
@@ -165,6 +195,14 @@ export default {
         <h3 class="text-xs text-gray-400">
           {{ new Date(this.year, this.month + 1, day).getDate() }}
         </h3>
+        <StatusIndicator
+          v-if="
+            checkStatus(day, this.month + 1, this.year) !== null &&
+            checkStatus(day, this.month + 1, this.year) !== -1
+          "
+          :allDates="this.allDatesData"
+          :dateIndex="checkStatus(day, this.month + 1, this.year)"
+        />
       </div>
     </div>
   </div>

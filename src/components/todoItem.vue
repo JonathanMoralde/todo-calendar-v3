@@ -81,7 +81,17 @@ import "vue-material-design-icons/styles.css";
 import axios from "axios";
 export default {
   name: "TodoItem",
-  props: ["id", "desc", "completed", "i", "tasks", "updateData"],
+  props: [
+    "id",
+    "desc",
+    "completed",
+    "i",
+    "tasks",
+    "updateData",
+    "allDates",
+    "dateStringValue",
+    "setAllDates",
+  ],
   data() {
     return {
       isCheck: this.completed || false,
@@ -115,13 +125,15 @@ export default {
         //   log
         // }
 
-        // const updatedAllDates = [...this.allDates];
-        // const dateIndex = updatedAllDates.map((d) => d.date).indexOf(dateString);
-        // if (dateIndex !== -1) {
-        //   updatedAllDates[dateIndex].tasks[index].completed = updatedIsCheck;
+        let updatedAllDates = [...this.allDates];
+        const dateIndex = updatedAllDates
+          .map((d) => d.date)
+          .indexOf(this.dateStringValue);
+        if (dateIndex !== -1) {
+          updatedAllDates[dateIndex].tasks[this.i].completed = updatedIsCheck;
 
-        //   setAllDates(updatedAllDates);
-        // }
+          this.setAllDates(updatedAllDates);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -158,7 +170,8 @@ export default {
     },
   },
   mounted() {
-    console.log(this.completed);
+    console.log("alldates data in todo Item");
+    console.log(this.allDates);
   },
 };
 </script>

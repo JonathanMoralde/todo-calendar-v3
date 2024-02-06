@@ -47,12 +47,17 @@
   </header>
   <main class="py-16 min-h-screen px-4 md:px-20 lg:px-60">
     <div class="flex flex-col md:flex-row-reverse gap-10 md:gap-4">
-      <TodoApp :date="selectedDate" />
+      <TodoApp
+        :date="selectedDate"
+        :allDatesData="allDates"
+        :updateAllDates="setAllDates"
+      />
       <CalendarSection
         :year="year"
         :month="month"
         :updateDisplay="changeDisplay"
         :setDate="handleClick"
+        :allDatesData="allDates"
       />
     </div>
     <div className="flex justify-center mt-10">
@@ -94,28 +99,51 @@ export default {
       selectedDate: new Date(),
       isDropdownOpen: false,
       userName: "",
+      allDates: [],
     };
   },
   beforeMount() {
-    try {
-      axios
-        .get("http://localhost:5000/user/get-name", {
-          withCredentials: true,
-        })
-        .then((response) => {
-          const userName = response.data.name;
-          // Update the user's name in your component's data
-          // For example, you can set it to a data property called 'userName'
-          this.userName = userName;
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    this.fetchName();
+    this.fetchDates();
   },
   methods: {
+    fetchName() {
+      try {
+        axios
+          .get("http://localhost:5000/user/get-name", {
+            withCredentials: true,
+          })
+          .then((response) => {
+            const userName = response.data.name;
+            // Update the user's name in your component's data
+            // For example, you can set it to a data property called 'userName'
+            this.userName = userName;
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    fetchDates() {
+      try {
+        axios
+          .get("http://localhost:5000/api/getDates", {
+            withCredentials: true,
+          })
+          .then((response) => {
+            this.allDates = response.data;
+            console.log(response.data);
+            console.log(this.allDates);
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    },
     changeDisplay(isNext, isYear) {
       if (isYear) {
         if (isNext) {
@@ -164,9 +192,6 @@ export default {
     },
 
     signOut() {
-      // Handle sign-out logic here
-      console.log("User signed out!");
-      // You might want to redirect to the sign-out page or perform any other necessary actions
       try {
         axios
           .post(
@@ -189,14 +214,14 @@ export default {
           .catch((err) => {
             console.log(err.response);
           });
-
-        // console.log(response.data, "login data");
-        // if (response.data.message === "Signed in successfully!") {
-        //   router.push("/");
-        // }
       } catch (error) {
         console.log(error);
       }
+    },
+    setAllDates(updatedDates) {
+      this.allDates = [...updatedDates];
+      // console.log(updatedDates);
+      // this.fetchDates();
     },
   },
 };
